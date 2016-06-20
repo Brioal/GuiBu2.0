@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.brioal.guibu20.activity.TimeCountActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="运动准备时间"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/act_time_count_tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="10s"
+            android:textColor="@color/colorPrimary"
+            android:textSize="100sp"/>
+
+        <TextView
+            android:id="@+id/act_time_count_tv_start"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="后开始或点击立即开始"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/act_time_count_btn_add"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="+5s"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"/>
+
+</RelativeLayout>

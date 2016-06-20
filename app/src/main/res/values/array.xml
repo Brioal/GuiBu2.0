@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <array name="drawable_array">
+
+        <item>@mipmap/ic_pause</item>
+        <item>@mipmap/ic_stop</item>
+    </array>
+</resources>

@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+    sourceSets {
+        main.jniLibs.srcDirs = ['libs']
+    }
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile files('libs/BmobSDK_V3.4.7_0527.jar')
+    compile files('libs/Bmob_Push_V0.9beta_20160520.jar')
+    compile files('libs/jsoup-1.9.1.jar')
+    compile files('libs/okhttp-3.2.0.jar')
+    compile files('libs/okio-1.7.0.jar')
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.nineoldandroids:library:2.4.0'
+}

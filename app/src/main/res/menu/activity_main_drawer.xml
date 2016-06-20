@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_running"
+            android:checked="true"
+            android:icon="@mipmap/ic_running"
+            android:title="跑步" />
+        <item
+            android:id="@+id/nav_step"
+            android:checked="true"
+            android:icon="@mipmap/ic_step"
+            android:title="计步器" />
+        <item
+            android:id="@+id/nav_step_record"
+            android:checked="true"
+            android:icon="@mipmap/ic_step_record"
+            android:title="步数记录" />
+        <item
+            android:id="@+id/nav_running_record"
+            android:checked="true"
+            android:icon="@mipmap/ic_step_record"
+            android:title="跑步记录" />
+
+    </group>
+
+    <item android:title="更多">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_send"
+                android:title="关于" />
+        </menu>
+    </item>
+
+</menu>
