@@ -40,6 +40,7 @@ import com.amap.api.maps2d.model.MyLocationStyle;
 import com.amap.api.maps2d.model.PolylineOptions;
 import com.brioal.brioallib.base.BaseFragment;
 import com.brioal.brioallib.util.DateUtil;
+import com.brioal.brioallib.util.ToastUtils;
 import com.brioal.guibu20.R;
 import com.brioal.guibu20.activity.RunningDetailActivity;
 import com.brioal.guibu20.activity.TimeCountActivity;
@@ -245,11 +246,21 @@ public class RunningFragment extends BaseFragment implements View.OnClickListene
 
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mMapView != null) {
+            mMapView.onDestroy();
+            aMap = null;
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
         if (mMapView != null) {
             mMapView.onDestroy();
+            aMap = null;
         }
     }
 
@@ -323,8 +334,8 @@ public class RunningFragment extends BaseFragment implements View.OnClickListene
                     if (bundle != null) {
                         mTimeCount = bundle.getLong("TimeCount");
                         mDistanceCount = bundle.getDouble("DistanceCount");
-                        mSpeed = mDistanceCount*60*60*1000/mTimeCount;
-                        mKmTime = (long) (mTimeCount*1000/mDistanceCount);
+                        mSpeed = bundle.getDouble("Speed");
+                        mKmTime = bundle.getLong("KmTime");
                         mCalorie = bundle.getDouble("Calorie");
                         mAltitude = bundle.getDouble("Altitude");
                         mNewList = (List<PointEntity>) bundle.getSerializable("List");
@@ -373,10 +384,10 @@ public class RunningFragment extends BaseFragment implements View.OnClickListene
             mTimer.cancel();
         }
         resert();
-//        if (mDistanceCount < 50) { //如果小于100米,则不计入跑步
-//            ToastUtils.showToast(mContext, "距离不超过50米,不算入跑步");
-//            return;
-//        }
+        if (mDistanceCount < 50) { //如果小于100米,则不计入跑步
+            ToastUtils.showToast(mContext, "距离不超过50米,不算入跑步");
+            return;
+        }
         mEndTime = System.currentTimeMillis();
         showProgressDialog("请稍等", "正在获取数据中...");
         aMap.getMapScreenShot(new AMap.OnMapScreenShotListener() {

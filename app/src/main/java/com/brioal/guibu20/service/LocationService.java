@@ -155,7 +155,7 @@ public class LocationService extends Service implements AMapLocationListener {
         //初始化定位参数
         mLocationOption = new AMapLocationClientOption();
         //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
-        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Device_Sensors);
         //设置是否返回地址信息（默认返回地址信息）
         mLocationOption.setNeedAddress(true);
         //设置是否只定位一次,默认为false
@@ -273,7 +273,7 @@ public class LocationService extends Service implements AMapLocationListener {
         if (((int) (mDistanceCount / 1000)) == mCurrentKm) { //千米点
             KLog.d("千米距离点");
             LogFileUtil.file("千米距离点");
-            type = 1;
+            type = mCurrentKm;
             mCurrentKm++;
         } else { //添加普通点
             type = 0;
@@ -289,7 +289,7 @@ public class LocationService extends Service implements AMapLocationListener {
 
     @Override
     public void onLocationChanged(AMapLocation location) {
-        if (location != null ) {
+        if (location != null) {
             mAltitude = location.getAltitude();
             if (isRunning) { //开始运动
                 LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
@@ -330,8 +330,8 @@ public class LocationService extends Service implements AMapLocationListener {
                 Bundle bundle = new Bundle();
                 bundle.putLong("TimeCount", mTimeCount);
                 bundle.putDouble("DistanceCount", mDistanceCount);
-                bundle.putDouble("Speed", mSpeed);
-                bundle.putLong("KmTime", mKmTime);
+                bundle.putDouble("Speed", shortDistance * 60 * 60 * 1000 / 5000);
+                bundle.putLong("KmTime", (long) (5000 * 1000 / shortDistance));
                 bundle.putDouble("Calorie", mCalorie);
                 bundle.putDouble("Altitude", mAltitude);
                 bundle.putSerializable("List", mList);
